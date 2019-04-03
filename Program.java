@@ -6,8 +6,12 @@ public class Program {
 		
 		String option;
 		String pin;
+		double amount;
+		double balance;
+		
 		
 		BankAccount myMoney = new BankAccount(500.00);
+		
 		
 		
 		Scanner sc = new Scanner(System.in);
@@ -23,11 +27,21 @@ public class Program {
 	myMoney.choice(option);
 	
 	if (option.equals("withdraw")) {
-		
+		System.out.println("Please enter the amount of money you wish to withdraw.");
+		amount = sc.nextDouble();
+		myMoney.withdraw(amount);
 	}
-		}
+	else {
+		System.out.println("Please enter the amount of money you with to deposit.");
+		amount = sc.nextDouble();
+		myMoney.deposit(amount);
+		
+		}	
+	}
+		
 		else {
 			System.out.println("Error: Incorrect PIN");
+			System.out.println("Please retry.");
 		}
 	
 		
@@ -39,9 +53,6 @@ public class Program {
 
 class BankAccount {
 	private double balance;
-	
-	
-	
 	public String o;
 	public String PIN;
 		
@@ -62,34 +73,28 @@ class BankAccount {
 		
 	}
 	
-	public void withdraw(double amount, String p) {
-		if(o == "withdraw") {
-			if(p == PIN) {
-				if(amount > 0) {
-					balance = balance - amount;
-					System.out.println("Money dispensed. New balance: $" + balance);
+	public void withdraw(double amount) {
+		
+			if(amount > 0) {
+				balance = balance - amount;
+				System.out.println("Money dispensed. New balance: $" + balance);
+				
 				}
 				else {
 					System.out.println("Error: Amount must be greater than $0.");
 				}
-			}
-			
-		}
 	}
 	
-	public void deposit(double amount, String p) {
-		if(o == "deposit") {
+	public void deposit(double amount) {
+		
 			if(amount > 0 ) {
 				balance = balance + amount;
 				System.out.println("Money deposited. New balance: $" + balance);
 					
-			}
-			else {
-				System.out.println("Error: Please deposit amount greater than $0");
-			}	
-		}
-			
+				}
+				else {
+					System.out.println("Error: Please deposit amount greater than $0");
+				}	
 	}
-	
 	
 }
